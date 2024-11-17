@@ -1,13 +1,13 @@
 package pl.elpepe.quiz;
 
 
-import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.elpepe.quiz.database.entities.PlayerEntity;
+import pl.elpepe.quiz.database.repositories.PlayerRepository;
 
 import java.util.List;
 
@@ -16,22 +16,20 @@ import java.util.List;
 public class StartUpRunner implements CommandLineRunner {
 
     @Autowired
-    private EntityManager entityManager;
+    private PlayerRepository playerRepo;
 
     @Override
-    @Transactional
     public void run(String... args) throws Exception {
         log.info("Starting up");
 
-        PlayerEntity player = new PlayerEntity("Paweł");
-        log.info("Player created : {}", player);
-        entityManager.persist(player);
-        log.info("Player after being persisted with auto generated id : {}", player);
+        playerRepo.save(new PlayerEntity("pawel"));
+        playerRepo.save(new PlayerEntity("Gawel"));
+        playerRepo.save(new PlayerEntity("Romek"));
 
-        List<PlayerEntity> playersFromDB = entityManager.createQuery("select p from PLAYERS p").getResultList();
+        List<PlayerEntity> playersFromDB = playerRepo.findAll();
 
-        for (PlayerEntity playerFromDB : playersFromDB) {
-            log.info("Player found : {}", playerFromDB);
+        for (PlayerEntity playerDB : playersFromDB) {
+            log.info("Player found : {}", playerDB);
         }
     }
 }
