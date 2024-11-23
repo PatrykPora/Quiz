@@ -1,13 +1,13 @@
 package pl.elpepe.quiz;
 
 
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.elpepe.quiz.database.entities.PlayerEntity;
 import pl.elpepe.quiz.database.repositories.PlayerRepository;
+import pl.elpepe.quiz.service.dataQuestionsService.QuizQuestionsCategoriesService;
 
 import java.util.List;
 
@@ -18,6 +18,8 @@ public class StartUpRunner implements CommandLineRunner {
     @Autowired
     private PlayerRepository playerRepo;
 
+    @Autowired
+    private QuizQuestionsCategoriesService quizQuestionsCategoriesService;
     @Override
     public void run(String... args) throws Exception {
         log.info("Starting up");
@@ -31,5 +33,8 @@ public class StartUpRunner implements CommandLineRunner {
         for (PlayerEntity playerDB : playersFromDB) {
             log.info("Player found : {}", playerDB);
         }
+
+        quizQuestionsCategoriesService.getQuizCategories();
+
     }
 }
