@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.elpepe.quiz.database.entities.PlayerEntity;
 import pl.elpepe.quiz.database.repositories.PlayerRepository;
-import pl.elpepe.quiz.service.dataQuestionsService.QuizQuestionsCategoriesService;
+import pl.elpepe.quiz.service.dataQuestionsService.QuizQuestionsService;
 
 import java.util.List;
 
@@ -19,7 +19,8 @@ public class StartUpRunner implements CommandLineRunner {
     private PlayerRepository playerRepo;
 
     @Autowired
-    private QuizQuestionsCategoriesService quizQuestionsCategoriesService;
+    private QuizQuestionsService quizQuestionsService;
+
     @Override
     public void run(String... args) throws Exception {
         log.info("Starting up");
@@ -34,7 +35,7 @@ public class StartUpRunner implements CommandLineRunner {
             log.info("Player found : {}", playerDB);
         }
 
-        quizQuestionsCategoriesService.getQuizCategories();
-
+        quizQuestionsService.getQuizCategories();
+        quizQuestionsService.getQuizQuestions();
     }
 }
