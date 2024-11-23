@@ -7,15 +7,18 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @Service
 @Slf4j
 public class QuizQuestionsService {
 
-    public void getQuizCategories() {
+    public List<CategoriesDto.CategoryDto> getQuizCategories() {
         RestTemplate restTemplate = new RestTemplate();
         CategoriesDto result = restTemplate.getForObject("https://opentdb.com/api_category.php", CategoriesDto.class);
-        log.info("categories: {}", result.getCategories());
+        List<CategoriesDto.CategoryDto> categories = result.getCategories();
+        log.info("categories: {}", categories);
+        return categories;
     }
 
     public void getQuizQuestions() {
