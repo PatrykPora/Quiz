@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.elpepe.quiz.controllers.GameOptions;
 import pl.elpepe.quiz.database.entities.PlayerEntity;
 import pl.elpepe.quiz.database.repositories.PlayerRepository;
+import pl.elpepe.quiz.service.dataQuestionsService.Difficulty;
 import pl.elpepe.quiz.service.dataQuestionsService.QuizQuestionsService;
 
 import java.util.List;
@@ -36,6 +38,11 @@ public class StartUpRunner implements CommandLineRunner {
         }
 
         quizQuestionsService.getQuizCategories();
-        quizQuestionsService.getQuizQuestions();
+
+        GameOptions exampleGameOption = new GameOptions();
+        exampleGameOption.setCategoryId(23);
+        exampleGameOption.setNumberOfQuestions(2);
+        exampleGameOption.setDifficulty(Difficulty.EASY);
+        quizQuestionsService.getQuizQuestions(exampleGameOption);
     }
 }

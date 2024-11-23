@@ -20,7 +20,7 @@ public class QuestionsDto {
     @NoArgsConstructor
     @Getter
     @ToString
-    private static class QuestionDTO {
+    public static class QuestionDTO {
 
         private String category;
         protected String type;
