@@ -1,7 +1,6 @@
 package pl.elpepe.quiz.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,12 +44,30 @@ public class FrontendController {
     @GetMapping("/game")
     public String game(Model model) {
         model.addAttribute("userAnswer", new UserAnswer());
-        model.addAttribute("currentQuestionNumber", currentGameService.getTotalQuestionNumber());
+        model.addAttribute("currentQuestionNumber", currentGameService.getCurrentQuestionIndex());
         model.addAttribute("totalQuestionNumber", currentGameService.getTotalQuestionNumber());
         model.addAttribute("currentQuestion", currentGameService.getCurrentQuestion());
         model.addAttribute("currentQuestionAnswers", currentGameService.getCurrentQuestionAnswersInRandomOrder());
         return "game";
     }
 
+    @PostMapping("/game")
+    public String postSelectForm(Model model, @ModelAttribute UserAnswer userAnswer) {
+        currentGameService.checkAnswerForCurrentQuestionAndUpdatePoints(userAnswer.getAnswer());
+        boolean hasNextQuestion = currentGameService.proceedToNextQuestion();
+        if (hasNextQuestion) {
+            return "redirect:game";
+        } else {
+            return "redirect:summary";
+        }
+    }
 
+    @GetMapping("/summary")
+    public String summary(Model model) {
+        model.addAttribute("difficulty", currentGameService.getDifficulty());
+        model.addAttribute("categoryName", currentGameService.getCategoryName());
+        model.addAttribute("points", currentGameService.getPoints());
+        model.addAttribute("maxPoints", currentGameService.getTotalQuestionNumber());
+        return "summary";
+    }
 }

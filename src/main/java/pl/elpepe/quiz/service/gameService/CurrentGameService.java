@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.elpepe.quiz.controllers.GameOptions;
+import pl.elpepe.quiz.service.dataQuestionsService.Difficulty;
 import pl.elpepe.quiz.service.dataQuestionsService.QuestionsDto;
 import pl.elpepe.quiz.service.dataQuestionsService.QuizQuestionsService;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -63,7 +65,7 @@ public class CurrentGameService {
         QuestionsDto.QuestionDTO dto = questions.get(currentQuestionIndex);
         boolean correct = dto.getCorrectAnswer().equals(userAnswer);
         if (correct) {
-            points ++;
+            points++;
         }
         return correct;
     }
@@ -71,5 +73,17 @@ public class CurrentGameService {
     public boolean proceedToNextQuestion() {
         currentQuestionIndex++;
         return currentQuestionIndex < questions.size();
+    }
+
+    public Difficulty getDifficulty() {
+        return gameOptions.getDifficulty();
+    }
+
+    public String getCategoryName() {
+        Optional<String> category = quizQuestionsService.getQuizCategories().stream()
+                .filter(categoryDto -> categoryDto.getId() == gameOptions.getCategoryId())
+                .map(categoryDto -> categoryDto.getName())
+                .findAny();
+        return category.orElse(null);
     }
 }

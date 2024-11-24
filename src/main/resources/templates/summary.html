@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Quiz - GAME </title>
+        <title>GAME SUMMARY</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
@@ -33,31 +33,13 @@
         <section id="about">
             <div class="container px-4">
 
-                <form action="#" th:action="@{/game}" th:object="${userAnswer}" method="post">
-                    <div class="form-row">
-                        <h3 th:text="'Question ' + ${currentQuestionNumber} + '/' + ${totalQuestionNumber} + ':'"></h3>
-                        <h4 th:text="${currentQuestion}"></h4>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <p>Select correct answer:</p>
-                            <th:block th:each="answer,iter : ${currentQuestionAnswers}">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="answersRadioOptions"
-                                           th:id="'answer_' + ${iter.current}" th:value="${answer}" th:field="*{answer}">
-                                    <label class="form-check-label" th:for="'answer_' + ${iter.current}"
-                                           th:text="${answer}">
-                                    </label>
-                                </div>
-                            </th:block>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Next</button>
-                        </div>
-                    </div>
-                </form>
+            <header class="bg-success text-white">
+                <div class="container text-center">
+                    <h1>Congratulations!</h1>
+                    <p class="lead" th:text="'game finished ' + ${difficulty} + ' category ' + ${categoryName} + ' your score ' + ${points} + '/' + ${maxPoints}"></p>
+                    <a class="btn btn-primary" href="select">Play again</a>
+                </div>
+            </header>
 
 
             </div>
