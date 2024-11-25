@@ -1,0 +1,65 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Sports",
+      "question": "Who is often called &quot;the Maestro&quot; in the men&#039;s tennis circuit?",
+      "correct_answer": "Roger Federer",
+      "incorrect_answers": [
+        "Bill Tilden",
+        "Boris Becker",
+        "Pete Sampras"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Sports",
+      "question": "Who won the UEFA Champions League in 2017?",
+      "correct_answer": "Real Madrid C.F.",
+      "incorrect_answers": [
+        "Atletico Madrid",
+        "AS Monaco FC",
+        "Juventus F.C."
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Sports",
+      "question": "What year did the New Orleans Saints win the Super Bowl?",
+      "correct_answer": "2010",
+      "incorrect_answers": [
+        "2008",
+        "2009",
+        "2011"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Sports",
+      "question": "Which two teams played in Super Bowl XLII?",
+      "correct_answer": "The New York Giants &amp; The New England Patriots",
+      "incorrect_answers": [
+        "The Green Bay Packers &amp; The Pittsburgh Steelers",
+        "The Philadelphia Eagles &amp; The New England Patriots",
+        "The Seattle Seahawks &amp; The Denver Broncos"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Sports",
+      "question": "Which driver has been the Formula 1 world champion for a record 7 times?",
+      "correct_answer": "Michael Schumacher",
+      "incorrect_answers": [
+        "Ayrton Senna",
+        "Fernando Alonso",
+        "Jim Clark"
+      ]
+    }
+  ]
+}
