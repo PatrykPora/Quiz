@@ -25,24 +25,24 @@ public class StartUpRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("Starting up");
-
-        playerRepo.save(new PlayerEntity("pawel"));
-        playerRepo.save(new PlayerEntity("Gawel"));
-        playerRepo.save(new PlayerEntity("Romek"));
-
-        List<PlayerEntity> playersFromDB = playerRepo.findAll();
-
-        for (PlayerEntity playerDB : playersFromDB) {
-            log.info("Player found : {}", playerDB);
-        }
-
-        quizQuestionsService.getQuizCategories();
-
-        GameOptions exampleGameOption = new GameOptions();
-        exampleGameOption.setCategoryId(23);
-        exampleGameOption.setNumberOfQuestions(2);
-        exampleGameOption.setDifficulty(Difficulty.EASY);
-        quizQuestionsService.getQuizQuestions(exampleGameOption);
+//        log.info("Starting up");
+//
+//        playerRepo.save(new PlayerEntity("pawel"));
+//        playerRepo.save(new PlayerEntity("Gawel"));
+//        playerRepo.save(new PlayerEntity("Romek"));
+//
+//        List<PlayerEntity> playersFromDB = playerRepo.findAll();
+//
+//        for (PlayerEntity playerDB : playersFromDB) {
+//            log.info("Player found : {}", playerDB);
+//        }
+//
+//        quizQuestionsService.getQuizCategories();
+//
+//        GameOptions exampleGameOption = new GameOptions();
+//        exampleGameOption.setCategoryId(23);
+//        exampleGameOption.setNumberOfQuestions(2);
+//        exampleGameOption.setDifficulty(Difficulty.EASY);
+//        quizQuestionsService.getQuizQuestions(exampleGameOption);
     }
 }

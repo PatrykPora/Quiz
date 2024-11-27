@@ -36,7 +36,7 @@ public class FrontendController {
 
     @PostMapping("/select")
     public String postSelectForm(Model model, @ModelAttribute GameOptions gameOptions) {
-        log.info("player submitted wit options {}", gameOptions);
+        log.info("player submitted with options {}", gameOptions);
         currentGameService.init(gameOptions);
         return "redirect:game";
     }
