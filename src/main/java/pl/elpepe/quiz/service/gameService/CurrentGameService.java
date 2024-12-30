@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 import pl.elpepe.quiz.controllers.GameOptions;
 import pl.elpepe.quiz.service.dataQuestionsService.Difficulty;
 import pl.elpepe.quiz.service.dataQuestionsService.QuestionsDto;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@SessionScope
 public class CurrentGameService {
 
 
