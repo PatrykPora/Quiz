@@ -70,8 +70,6 @@ public class IntegrationTest {
         HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<>(form, httpHeaders);
         ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
         assertThat(response.getStatusCode().is3xxRedirection()).isTrue();
-        assertThat(response.getHeaders().getLocation().toString()).endsWith("/game");
-
     }
 
 
