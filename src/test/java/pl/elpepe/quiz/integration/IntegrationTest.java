@@ -12,16 +12,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import pl.elpepe.quiz.QuizApplication;
-import pl.elpepe.quiz.controllers.GameOptions;
-import pl.elpepe.quiz.service.dataQuestionsService.Difficulty;
-
-import java.util.Objects;
-
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
@@ -55,7 +48,7 @@ public class IntegrationTest {
         String url = testUrl + port + "/select";
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
-        assertThat(response.getBody()).contains("Quiz - game options");
+        assertThat(response.getBody()).contains("game options");
     }
 
     @Test

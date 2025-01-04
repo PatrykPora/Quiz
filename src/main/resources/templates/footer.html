@@ -1,0 +1,6 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <footer th:fragment="footer" class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; El Pe Pe <span
+                th:text="${#dates.year(#dates.createNow())}"></span></p></div>
+    </footer>
+</div>

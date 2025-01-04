@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Quiz - GAME </title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
-</head>
+<head th:insert="~{header :: commonHead}"></head>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -22,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <button class="btn btn-dark me-auto"><a class="nav-link text-white" href="/">Go to main page</a></button>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#currentGame">current game</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
@@ -31,8 +22,8 @@
 </nav>
 
 
-<!-- About section-->
-<section id="about">
+<!-- game section-->
+<section id="currentGame">
     <div class="container px-4">
 
         <form action="#" th:action="@{/game}" th:object="${userAnswer}" method="post">
@@ -67,32 +58,14 @@
 
 
 <!-- Services section-->
-<section class="bg-light" id="services">
-    <div class="container px-4">
-        <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
-                <h2>Game that we offer</h2>
-                <p class="lead">quiz game</p>
-            </div>
-        </div>
-    </div>
-</section>
+<div th:insert="~{serviceSection :: serviceSection}"></div>
+
 <!-- Contact section-->
-<section id="contact">
-    <div class="container px-4">
-        <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
-                <h2>Contact us</h2>
-                <p class="lead">available soon</p>
-            </div>
-        </div>
-    </div>
-</section>
+<div th:insert="~{contactSection :: contactSection}"></div>
+
 <!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; El Pe Pe <span
-            th:text="${#dates.year(#dates.createNow())}"></span></p></div>
-</footer>
+<div th:insert="~{footer :: footer}"></div>
+
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

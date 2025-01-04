@@ -24,11 +24,13 @@ public class FrontendController {
 
     @GetMapping("/")
     public String hello(Model model) {
+        model.addAttribute("pageTitle", "Quiz - game");
         return "index";
     }
 
     @GetMapping("/select")
     public String select(Model model) {
+        model.addAttribute("pageTitle", "game options");
         model.addAttribute("gameOptions", new GameOptions());
         model.addAttribute("categories", quizQuestionsService.getQuizCategories());
         return "select";
@@ -36,6 +38,7 @@ public class FrontendController {
 
     @PostMapping("/select")
     public String postSelectForm(Model model, @ModelAttribute GameOptions gameOptions) {
+        model.addAttribute("pageTitle", "game");
         log.info("player submitted with options {}", gameOptions);
         currentGameService.init(gameOptions);
         return "redirect:game";
@@ -43,6 +46,7 @@ public class FrontendController {
 
     @GetMapping("/game")
     public String game(Model model) {
+        model.addAttribute("pageTitle", "game");
         model.addAttribute("userAnswer", new UserAnswer());
         model.addAttribute("currentQuestionNumber", currentGameService.getCurrentQuestionIndex());
         model.addAttribute("totalQuestionNumber", currentGameService.getTotalQuestionNumber());
@@ -53,6 +57,7 @@ public class FrontendController {
 
     @PostMapping("/game")
     public String postSelectForm(Model model, @ModelAttribute UserAnswer userAnswer) {
+        model.addAttribute("pageTitle", "game");
         currentGameService.checkAnswerForCurrentQuestionAndUpdatePoints(userAnswer.getAnswer());
         boolean hasNextQuestion = currentGameService.proceedToNextQuestion();
         if (hasNextQuestion) {
@@ -64,6 +69,7 @@ public class FrontendController {
 
     @GetMapping("/summary")
     public String summary(Model model) {
+        model.addAttribute("pageTitle", "summary");
         model.addAttribute("difficulty", currentGameService.getDifficulty());
         model.addAttribute("categoryName", currentGameService.getCategoryName());
         model.addAttribute("points", currentGameService.getPoints());
