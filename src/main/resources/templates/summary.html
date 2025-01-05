@@ -21,26 +21,33 @@
     </div>
 </nav>
 
+<!-- error handling -->
+<div th:if="${error}">
+    <section style="margin-top: 20px; text-align: center;">
+        <div class="alert alert-danger" role="alert"
+             style="font-size: 2em; font-weight: bold; color: #d9534f; background-color: #f8d7da; border-color: #f5c6cb;">
+            <span th:text="${error}"></span>
+        </div>
+    </section>
+</div>
 
-<!-- summary section-->
-<section id="summary">
-    <div class="container px-4">
-
-        <header class="bg-success text-white">
-            <div class="container text-center">
-                <h1>Congratulations!</h1>
-                <p class="lead" th:text="'game finished'"></p>
-                <p class="lead" th:text="'level - ' + ${difficulty}"></p>
-                <p class="lead" th:text="'category - ' + ${categoryName}"></p>
-                <p class="lead" th:text="'your score  - ' + ${points} + '/' + ${maxPoints}"></p>
-                <a class="btn btn-primary" href="select">Play again</a>
-            </div>
-        </header>
-
-
-    </div>
-</section>
-
+<div th:if="${error == null}">
+    <!-- summary section-->
+    <section id="summary">
+        <div class="container px-4">
+            <header class="bg-success text-white">
+                <div class="container text-center">
+                    <h1>Congratulations!</h1>
+                    <p class="lead" th:text="'game finished'"></p>
+                    <p class="lead" th:text="'level - ' + ${difficulty}"></p>
+                    <p class="lead" th:text="'category - ' + ${categoryName}"></p>
+                    <p class="lead" th:text="'your score  - ' + ${points} + '/' + ${maxPoints}"></p>
+                    <a class="btn btn-primary" href="select">Play again</a>
+                </div>
+            </header>
+        </div>
+    </section>
+</div>
 
 <!-- Services section-->
 <div th:insert="~{serviceSection :: serviceSection}"></div>

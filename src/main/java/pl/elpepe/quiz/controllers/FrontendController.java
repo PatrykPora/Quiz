@@ -30,9 +30,13 @@ public class FrontendController {
 
     @GetMapping("/select")
     public String select(Model model) {
-        model.addAttribute("pageTitle", "game options");
-        model.addAttribute("gameOptions", new GameOptions());
-        model.addAttribute("categories", quizQuestionsService.getQuizCategories());
+        try {
+            model.addAttribute("pageTitle", "game options");
+            model.addAttribute("gameOptions", new GameOptions());
+            model.addAttribute("categories", quizQuestionsService.getQuizCategories());
+        } catch (Exception e) {
+            model.addAttribute("error", "Could not retrieve data, please try again later.");
+        }
         return "select";
     }
 
@@ -40,18 +44,26 @@ public class FrontendController {
     public String postSelectForm(Model model, @ModelAttribute GameOptions gameOptions) {
         model.addAttribute("pageTitle", "game");
         log.info("player submitted with options {}", gameOptions);
-        currentGameService.init(gameOptions);
+        try {
+            currentGameService.init(gameOptions);
+        } catch (Exception e) {
+            model.addAttribute("error", "Could not retrieve data, please try again later.");
+        }
         return "redirect:game";
     }
 
     @GetMapping("/game")
     public String game(Model model) {
-        model.addAttribute("pageTitle", "game");
-        model.addAttribute("userAnswer", new UserAnswer());
-        model.addAttribute("currentQuestionNumber", currentGameService.getCurrentQuestionIndex());
-        model.addAttribute("totalQuestionNumber", currentGameService.getTotalQuestionNumber());
-        model.addAttribute("currentQuestion", currentGameService.getCurrentQuestion());
-        model.addAttribute("currentQuestionAnswers", currentGameService.getCurrentQuestionAnswersInRandomOrder());
+        try {
+            model.addAttribute("pageTitle", "game");
+            model.addAttribute("userAnswer", new UserAnswer());
+            model.addAttribute("currentQuestionNumber", currentGameService.getCurrentQuestionIndex());
+            model.addAttribute("totalQuestionNumber", currentGameService.getTotalQuestionNumber());
+            model.addAttribute("currentQuestion", currentGameService.getCurrentQuestion());
+            model.addAttribute("currentQuestionAnswers", currentGameService.getCurrentQuestionAnswersInRandomOrder());
+        } catch (Exception e) {
+            model.addAttribute("error", "Could not retrieve data, please try again later.");
+        }
         return "game";
     }
 
@@ -69,11 +81,15 @@ public class FrontendController {
 
     @GetMapping("/summary")
     public String summary(Model model) {
-        model.addAttribute("pageTitle", "summary");
-        model.addAttribute("difficulty", currentGameService.getDifficulty());
-        model.addAttribute("categoryName", currentGameService.getCategoryName());
-        model.addAttribute("points", currentGameService.getPoints());
-        model.addAttribute("maxPoints", currentGameService.getTotalQuestionNumber());
+        try {
+            model.addAttribute("pageTitle", "summary");
+            model.addAttribute("difficulty", currentGameService.getDifficulty());
+            model.addAttribute("categoryName", currentGameService.getCategoryName());
+            model.addAttribute("points", currentGameService.getPoints());
+            model.addAttribute("maxPoints", currentGameService.getTotalQuestionNumber());
+        } catch (Exception e) {
+            model.addAttribute("error", "Could not retrieve data, please try again later.");
+        }
         return "summary";
     }
 }
